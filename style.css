@@ -1,0 +1,40 @@
+body {
+    background-color: #0e88e8;
+}
+
+#calcContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#calcContainer div{
+    border-style: outset;
+    border-color: #00bbfa;
+}
+
+#calcContainer p{
+    width: 400px;
+    text-align: center;
+}
+
+#calcButtons {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+}
+#calcButtons button {
+    width: 100px;
+    background-color: #00183e;
+    color: #74d1f7;
+    font-weight: 900;
+}
+
+#calcButtons .halfButton {
+    width: 50px;
+}
+
+#calcButtons .bigButton {
+    width: 200px;
+}
