@@ -19,6 +19,13 @@ body {
     text-align: center;
 }
 
+#calcDisp {
+    min-width: 400px;
+    text-align: right;
+    min-height: 25px;
+    background-color: white;
+}
+
 #calcButtons {
     display: flex;
     flex-wrap: wrap;
