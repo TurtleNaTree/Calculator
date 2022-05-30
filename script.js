@@ -1,12 +1,14 @@
 
+window.onload = () => document.getElementById("calcDisp").value = "0";
 initButtons();
 
 function initButtons(){
     numInputs = document.getElementsByClassName("numInput");
     for (const numButton of numInputs){
-        console.log(numButton.textContent);
         numButton.addEventListener("click", () => updateDisp(numButton.textContent));
     }
+
+    document.getElementById("clearInput").addEventListener("click", () => clearDisp());
 }
 
 function add(a, b){
@@ -45,6 +47,13 @@ function operate(operation, a, b){
 
 function updateDisp(value){
     disp = document.getElementById("calcDisp");
-    disp.textContent = disp.textContent + value;
-    console.log(disp.textContent);
+    console.log(`${disp.value}`);
+    console.log(disp.value == 0);
+
+    (disp.value == 0) ? disp.value = value : disp.value+= value;
+    
+}
+
+function clearDisp(){
+    document.getElementById("calcDisp").value = 0;
 }
