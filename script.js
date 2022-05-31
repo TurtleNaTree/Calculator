@@ -9,6 +9,21 @@ function initButtons(){
     }
 
     document.getElementById("clearInput").addEventListener("click", () => clearDisp());
+
+    modInputs = document.getElementsByClassName("modInput");
+    for (const modButton of modInputs){
+        switch (modButton.textContent){
+            case ".":
+                modButton.addEventListener("click", () => addDecimal());
+                break;
+            case "+/-":
+                modButton.addEventListener("click", () => negate());
+                break;
+            default:
+                console.log("something whent wrong");
+                break;
+        }
+    }
 }
 
 function add(a, b){
@@ -56,4 +71,19 @@ function updateDisp(value){
 
 function clearDisp(){
     document.getElementById("calcDisp").value = 0;
+}
+
+function addDecimal(){
+    disp = document.getElementById("calcDisp");
+
+    if (!(/\./.test(disp.value)))
+        disp.value += ".";
+}
+
+function negate(){
+    disp = document.getElementById("calcDisp");
+
+    if (!(+disp.value  === 0))
+        disp.value *= -1; 
+        
 }
