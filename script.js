@@ -77,12 +77,22 @@ function operate(operation, a){
                 (operation == "equal") ? updateDispOverload(add(totalValue, a), true): updateDispOverload(add(totalValue, a), false);
                 savedOperation = operation;
                 newOperation = true;
+                break;
             case "substract":
-                return(substract(totalValue, a));
+                (operation == "equal") ? updateDispOverload(substract(totalValue, a), true): updateDispOverload(substract(totalValue, a), false);
+                savedOperation = operation;
+                newOperation = true;
+                break;
             case "multiply":
-                return(multiply(totalValue, a));
+                (operation == "equal") ? updateDispOverload(multiply(totalValue, a), true): updateDispOverload(multiply(totalValue, a), false);
+                savedOperation = operation;
+                newOperation = true;
+                break;
             case "divide":
-                return(divide(totalValue, a));
+                (operation == "equal") ? updateDispOverload(divide(totalValue, a), true): updateDispOverload(divide(totalValue, a), false);
+                savedOperation = operation;
+                newOperation = true;
+                break;
             case "equal":
                 if (savedOperation !== "equal"){
                     equalPressed = true;
@@ -95,7 +105,7 @@ function operate(operation, a){
         }
     }
     else {
-        if (operation !== "equal"){
+        if (operation !== "equal" && !newOperation){
             totalValue = calcDisp.value;
             savedOperation = operation;
             newOperation = true;
