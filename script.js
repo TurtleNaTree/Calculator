@@ -71,10 +71,10 @@ function divide(a, b){
 
 function operate(operation, a){
 
-    if (state){
+    if (state && !newOperation){
         switch(savedOperation){
             case "add":
-                updateDispOverload(add(totalValue, a), equalPressed);
+                (operation == "equal") ? updateDispOverload(add(totalValue, a), true): updateDispOverload(add(totalValue, a), false);
                 savedOperation = operation;
                 newOperation = true;
             case "substract":
@@ -84,8 +84,10 @@ function operate(operation, a){
             case "divide":
                 return(divide(totalValue, a));
             case "equal":
-                equalPressed = true;
+                if (savedOperation !== "equal"){
+                    equalPressed = true;
                 operate(savedOperation, totalValue, calcDisp.value);
+                }
                 break;
             default:
                 console.log("Something went wrong in operate");
@@ -93,35 +95,37 @@ function operate(operation, a){
         }
     }
     else {
-        totalValue = calcDisp.value;
-        savedOperation = operation;
-        newOperation = true;
-        updateState();
+        if (operation !== "equal"){
+            totalValue = calcDisp.value;
+            savedOperation = operation;
+            newOperation = true;
+            updateState();
+        }
+        
     }
 }
 
 
 function updateDisp(value){
-    disp = document.getElementById("calcDisp");
     
-    ((+disp.value === 0 && !/\./.test(disp.value)) || newOperation) ? disp.value = value : disp.value+= value; 
+    ((+calcDisp.value === 0 && !/\./.test(calcDisp.value)) || newOperation) ? calcDisp.value = value : calcDisp.value+= value; 
     if (newOperation)
         newOperation = false;
     
 }
 
 function updateDispOverload(value, equalPressed){
-    disp = document.getElementById("calcDisp");
+    
     if (equalPressed){
-        disp.value = value;
+        calcDisp.value = value;
         savedOperation = "";
         updateState();
         equalPressed = false;
         newOperation = true;
     }
     else
-        disp.value = value;
-        totalValue = value;
+        calcDisp.value = value;
+    totalValue = value;
    
     
 }
@@ -131,20 +135,19 @@ function clearDisp(){
     document.getElementById("calcDisp").value = 0;
     savedOperation = "";
     newOperation = false;
+    state = false;
 }
 
 function addDecimal(){
-    disp = document.getElementById("calcDisp");
 
-    if (!(/\./.test(disp.value)))
-        disp.value += ".";
+    if (!(/\./.test(calcDisp.value)))
+        calcDisp.value += ".";
 }
 
 function negate(){
-    disp = document.getElementById("calcDisp");
 
-    if (!(+disp.value  === 0))
-        disp.value *= -1; 
+    if (!(+calcDisp.value  === 0))
+        calcDisp.value *= -1; 
         
 }
 
