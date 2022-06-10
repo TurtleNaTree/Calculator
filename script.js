@@ -42,10 +42,20 @@ function initButtons(){
             case "+":
                 operationButton.addEventListener("click", () => operate("add", calcDisp.value));
                 break;
+            case "-":
+                operationButton.addEventListener("click", () => operate("substract", calcDisp.value));
+                break;
+            case "*":
+                operationButton.addEventListener("click", () => operate("multiply", calcDisp.value));
+                break;
+            case "÷":
+                operationButton.addEventListener("click", () => operate("divide", calcDisp.value));
+                break;
             case "=":
                 operationButton.addEventListener("click", () => operate("equal", calcDisp.value));
                 break;
             default:
+                console.log(operationButton.textContent);
                 console.log("something went wrong");
         }
     }
@@ -105,7 +115,7 @@ function operate(operation, a){
         }
     }
     else {
-        if (operation !== "equal" && !newOperation){
+        if (operation !== "equal"){
             totalValue = calcDisp.value;
             savedOperation = operation;
             newOperation = true;
